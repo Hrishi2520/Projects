@@ -14,9 +14,11 @@ public class Main {
         Note c = new Note("C");
         java.setDescription("i'm the best of all the languages");
 
-//        ArrayList<Note> notes = new ArrayList<>();
-//        notes.add(note1);
-//        notes.add(java);
+        ArrayList<Note> notes = new ArrayList<>();
+        notes.add(note1);
+        notes.add(java);
+        notes.add(python);
+        notes.add(c);
 //        System.out.println(notes);
 //
 //        findNote(notes, java);
@@ -30,20 +32,22 @@ public class Main {
 ////        getNote(notes,java);
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("enter the action number");
         int input = scanner.nextInt();
         boolean flag = false;
         while(!flag) {
+            getActions();
             switch (input) {
-                case 1 -> addNote(l);
-                case 2 -> "Small";
-                case 3 -> "Medium";
-                case 4 -> "Large";
+                case 1 -> addNote(notes, note1);
+                case 2 -> getNote(notes, java);
+                case 3 -> findNote(notes, python);
+                case 4 -> removeNote(notes, java);
                 default -> flag = true;
             }
         }
 
     }
-    private static void
+//    private static void
 
     private static void getActions(){
         System.out.println("""
