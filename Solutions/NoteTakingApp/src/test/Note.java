@@ -1,8 +1,10 @@
+package test;
+
 public class Note {
     private String title;
-    private String description;
+    private StringBuilder description;
 
-    public Note (String title) {
+    public Note(String title) {
         this.title = title;
     }
 
@@ -14,19 +16,23 @@ public class Note {
         this.title = title;
     }
 
-    public String getDescription() {
+    public StringBuilder getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(StringBuilder description) {
         this.description = description;
+    }
+
+    public void addDescription(String description) {
+        this.description.append(" "+description);
     }
 
     @Override
     public String toString() {
-        return "Note: [" +
+        return "Note{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ']';
+                '}';
     }
 }
