@@ -16,13 +16,13 @@ public class Main {
         Note html = new Note("HTML");
 
         NotesList notesList = new NotesList();
-
+// Added note to notes...
         notesList.addNote(c);
-        notesList.addNote(c);
-        notesList.addNote(c);
-        notesList.addNote(c);
-        notesList.addNote(c);
-        notesList.addNote(c);
+        notesList.addNote(java);
+        notesList.addNote(python);
+        notesList.addNote(ruby);
+        notesList.addNote(golang);
+        notesList.addNote(html);
         while(flag) {
             printActions();
             switch (scanner.nextLine().toUpperCase()) {
