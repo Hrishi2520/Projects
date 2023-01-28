@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         boolean flag = true;
 //        ArrayList<Note> notes = new ArrayList<>();
@@ -23,7 +24,7 @@ public class Main {
         notesList.addNote(ruby);
         notesList.addNote(golang);
         notesList.addNote(html);
-        while(flag) {
+        while (flag) {
             printActions();
             switch (scanner.nextLine().toUpperCase()) {
                 case "A" -> notesList.addNote(new Note(scanner.nextLine()));
@@ -36,6 +37,7 @@ public class Main {
             System.out.println(notesList);
         }
     }
+
     public static void printActions() {
         String textBlock = """
                 Available Actions:
@@ -45,6 +47,6 @@ public class Main {
                 D-> removeNote
                 Q-> Quit
                 Enter the action you want to perform:""";
-        System.out.print(textBlock+" ");
+        System.out.print(textBlock + " ");
     }
 }

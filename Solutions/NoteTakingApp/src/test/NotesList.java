@@ -22,7 +22,6 @@ public class NotesList {
     }
 
 
-
     public boolean findNote(Note note) {
         boolean isPresent = false;
         for (Note note1 : notes) {

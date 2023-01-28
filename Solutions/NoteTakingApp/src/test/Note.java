@@ -25,7 +25,7 @@ public class Note {
     }
 
     public void addDescription(String description) {
-        this.description.append(" "+description);
+        this.description.append(" " + description);
     }
 
     @Override
