@@ -7,8 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         boolean flag = true;
-//        ArrayList<Note> notes = new ArrayList<>();
-//
+
         Note c = new Note("C");
         Note java = new Note("Java");
         Note python = new Note("Python");
@@ -17,7 +16,7 @@ public class Main {
         Note html = new Note("HTML");
 
         NotesList notesList = new NotesList();
-// Added note to notes...
+        // Adding note to noteslist...
         notesList.addNote(c);
         notesList.addNote(java);
         notesList.addNote(python);
@@ -27,12 +26,11 @@ public class Main {
         while (flag) {
             printActions();
             switch (scanner.nextLine().toUpperCase()) {
-                case "A" -> notesList.addNote(new Note(scanner.nextLine()));
-                case "B" -> notesList.getNotes();
-                case "C" -> notesList.findNote(new Note(scanner.nextLine()));
-                case "D" -> notesList.removeNote(new Note(scanner.nextLine()));
-                case "Q" -> flag = false;
-//                default -> System.out.println("pls Enter Action from [A,B,C,D,Q]");
+                case "ADD" -> notesList.addNote(new Note());
+                case "LIST_NOTES" -> notesList.getNotes();
+                case "FIND_NOTE" -> notesList.findNote(new Note());
+                case "REMOVE_NOTE" -> notesList.removeNote(new Note());
+                case "QUITE" -> flag = false;
             }
             System.out.println(notesList);
         }

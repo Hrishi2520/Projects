@@ -3,8 +3,8 @@ package test;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-public class NotesList {
-    ArrayList<Note> notes = new ArrayList<>();
+public class NotesList extends Note{
+    private final ArrayList<Note> notes = new ArrayList<>();
 
     public void getNotes() {
         Stream.of(notes).forEach(System.out::println);
