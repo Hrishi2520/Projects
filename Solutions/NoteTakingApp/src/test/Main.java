@@ -16,20 +16,22 @@ public class Main {
         Note html = new Note("HTML");
 
         NotesList notesList = new NotesList();
-        // Adding note to noteslist...
+        // Adding note to notes_list...
         notesList.addNote(c);
         notesList.addNote(java);
         notesList.addNote(python);
         notesList.addNote(ruby);
         notesList.addNote(golang);
         notesList.addNote(html);
+        notesList.getNotes();
+
         while (flag) {
             printActions();
             switch (scanner.nextLine().toUpperCase()) {
-                case "ADD" -> notesList.addNote(new Note());
-                case "LIST_NOTES" -> notesList.getNotes();
-                case "FIND_NOTE" -> notesList.findNote(new Note());
-                case "REMOVE_NOTE" -> notesList.removeNote(new Note());
+                case "ADD" -> notesList.addNote(new Note(""));
+                case "LIST NOTES" -> System.out.println(notesList);
+                case "FIND NOTE" -> notesList.findNote(new Note(new String()));
+                case "REMOVE NOTE" -> notesList.removeNote(new Note(new String()));
                 case "QUITE" -> flag = false;
             }
             System.out.println(notesList);
@@ -39,10 +41,10 @@ public class Main {
     public static void printActions() {
         String textBlock = """
                 Available Actions:
-                A-> addNote
-                B-> getNotes
-                C-> findNote
-                D-> removeNote
+                A-> add Note
+                B-> get Notes
+                C-> find Note
+                D-> remove Note
                 Q-> Quit
                 Enter the action you want to perform:""";
         System.out.print(textBlock + " ");

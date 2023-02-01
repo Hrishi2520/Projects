@@ -7,7 +7,9 @@ public class NotesList extends Note{
     private final ArrayList<Note> notes = new ArrayList<>();
 
     public void getNotes() {
-        Stream.of(notes).forEach(System.out::println);
+
+//        Stream.of(notes).forEach(System.out::println);
+        Stream.of(notes).forEach(System.out::print);
     }
 
     public void addNote(Note note) {
