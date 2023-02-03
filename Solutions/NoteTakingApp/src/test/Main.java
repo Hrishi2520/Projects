@@ -28,7 +28,7 @@ public class Main {
         while (flag) {
             printActions();
             switch (scanner.nextLine().toUpperCase()) {
-                case "ADD" -> notesList.addNote(new Note(""));
+                case "ADD" -> notesList.addNote(new Note(new String()));
                 case "LIST NOTES" -> System.out.println(notesList);
                 case "FIND NOTE" -> notesList.findNote(new Note(new String()));
                 case "REMOVE NOTE" -> notesList.removeNote(new Note(new String()));
