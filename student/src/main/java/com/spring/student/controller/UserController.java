@@ -1,25 +1,13 @@
 package com.spring.student.controller;
 
-import com.spring.student.dto.LoginReq;
-import com.spring.student.dto.LoginRes;
 import com.spring.student.dto.UserDto;
-import com.spring.student.dto.UserPrinciple;
 import com.spring.student.entity.Student;
 import com.spring.student.repo.StudentRepo;
 import com.spring.student.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/user")
