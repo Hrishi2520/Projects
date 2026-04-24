@@ -3,7 +3,6 @@ package com.spring.student.service;
 import com.spring.student.dto.UserPrinciple;
 import com.spring.student.entity.Student;
 import com.spring.student.repo.StudentRepo;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
