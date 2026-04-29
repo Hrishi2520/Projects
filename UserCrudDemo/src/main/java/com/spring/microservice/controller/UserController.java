@@ -1,5 +1,7 @@
 package com.spring.microservice.controller;
 
+import com.spring.microservice.dto.AuthResponse;
+import com.spring.microservice.dto.LoginRequest;
 import com.spring.microservice.dto.RegisterReq;
 import com.spring.microservice.dto.UserRes;
 import com.spring.microservice.service.UserService;
@@ -19,6 +21,10 @@ public class UserController {
         return ResponseEntity.ok(userService.register(request));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+        return ResponseEntity.ok(userService.login(request));
+    }
     @GetMapping("/{id}")
     public ResponseEntity<UserRes> getUser(@PathVariable int id) {
         return ResponseEntity.ok(userService.getUser(id));

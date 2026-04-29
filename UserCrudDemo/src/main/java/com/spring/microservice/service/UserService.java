@@ -30,6 +30,7 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
     private PasswordEncoder encoder;
 
     public UserRes register(RegisterReq req) {
@@ -74,8 +75,15 @@ public class UserService {
 
         String token = jwtUtil.generateToken(user.getEmail(), roles);
 
-        return new AuthResponse(token);
+        return AuthResponse
+                .builder()
+                .token(token)
+                .type("Bearer ")
+                .email(user.getEmail())
+                .roles(roles)
+                .build();
     }
+
     // ✅ Get User Profile
     public UserRes getUser(int id) {
         User user = userRepo.findById(id)
