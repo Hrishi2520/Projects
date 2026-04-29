@@ -1,5 +1,8 @@
 package com.spring.microservice.service;
 
+import com.spring.microservice.config.JwtUtil;
+import com.spring.microservice.dto.AuthResponse;
+import com.spring.microservice.dto.LoginRequest;
 import com.spring.microservice.dto.RegisterReq;
 import com.spring.microservice.dto.UserRes;
 import com.spring.microservice.entity.Role;
@@ -8,6 +11,7 @@ import com.spring.microservice.repository.RoleRepo;
 import com.spring.microservice.repository.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -22,6 +26,12 @@ public class UserService {
 
     @Autowired
     private RoleRepo roleRepo;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     public UserRes register(RegisterReq req) {
 
@@ -39,13 +49,39 @@ public class UserService {
         User user = new User();
         user.setName(req.getName());
         user.setEmail(req.getEmail());
-        user.setPassword(req.getPassword());
+        user.setPassword(encoder.encode(req.getPassword()));
 
         user.setRoles(Set.of(userRole));
 
         User saved = userRepo.save(user);
 
         return mapToResponse(saved);
+    }
+
+    public AuthResponse login(LoginRequest request) {
+
+        User user = userRepo.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // ✅ Password check
+        if (!encoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        Set<String> roles = user.getRoles()
+                .stream()
+                .map(Role::getName)
+                .collect(Collectors.toSet());
+
+        String token = jwtUtil.generateToken(user.getEmail(), roles);
+
+        return AuthResponse
+                .builder()
+                .token(token)
+                .type("Bearer ")
+                .email(user.getEmail())
+                .roles(roles)
+                .build();
     }
 
     // ✅ Get User Profile
