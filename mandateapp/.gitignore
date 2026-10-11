@@ -18,6 +18,8 @@ target/
 *.iws
 *.iml
 *.ipr
+out/
+target/
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +33,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Locally generated practice keys
+/keys/
+
+# Compiled Java files
+*.class
