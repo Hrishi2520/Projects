@@ -19,8 +19,9 @@ public class AesGcmExample {
     private final SecretKey secretKey;
     private final SecureRandom secureRandom = new SecureRandom();
 
-    public AesGcmExample() throws NoSuchAlgorithmException {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance(ALGORITHM);
+    public AesGcmExample() throws Exception {
+//        Creates an AES key generator.
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
         keyGenerator.init(256);
         this.secretKey = keyGenerator.generateKey();
     }
