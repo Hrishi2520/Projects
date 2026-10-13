@@ -12,16 +12,20 @@ import java.util.Base64;
 
 public class AesGcmExample {
 
+//    Selects AES in GCM mode without padding.
     private static final String ALGORITHM = "AES/GCM/NoPadding";
     private static final int IV_LENGTH = 12;
     private static final int TAG_LENGTH_BITS = 128;
 
     private final SecretKey secretKey;
+
+//    Generates a cryptographically strong random nonce.
     private final SecureRandom secureRandom = new SecureRandom();
 
     public AesGcmExample() throws Exception {
 //        Creates an AES key generator.
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+//        Requests a 256-bit AES key.
         keyGenerator.init(256);
         this.secretKey = keyGenerator.generateKey();
     }
@@ -34,13 +38,13 @@ public class AesGcmExample {
         // cipher generation
         Cipher cipher = Cipher.getInstance(ALGORITHM);
 
-        // setting algorithm specs
+        // Configures a 128-bit authentication tag and the nonce.
         GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(TAG_LENGTH_BITS, iv);
 
         // initiate cipher
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, gcmParameterSpec);
 
-        // convert plain text to cipher text
+        // Performs encryption or decryption and verifies the tag during decryption.
         byte[] cipherText = cipher.doFinal(plaintext.getBytes(StandardCharsets.UTF_8));
 
         byte[] encrypted = new byte[IV_LENGTH + cipherText.length];
@@ -48,6 +52,7 @@ public class AesGcmExample {
         System.arraycopy(iv, 0, encrypted, 0, IV_LENGTH);
         System.arraycopy(cipherText, 0, encrypted, IV_LENGTH, cipherText.length);
 
+//        Converts binary data into a text-safe representation.
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
@@ -67,7 +72,7 @@ public class AesGcmExample {
         GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(TAG_LENGTH_BITS, iv);
 
         cipher.init(Cipher.DECRYPT_MODE, secretKey, gcmParameterSpec);
-
+//          Performs encryption or decryption and verifies the tag during decryption.
         byte[] bytes = cipher.doFinal(cipherText);
 
         return new String(bytes, StandardCharsets.UTF_8);
