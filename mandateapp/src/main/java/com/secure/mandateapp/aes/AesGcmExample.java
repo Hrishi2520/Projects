@@ -61,6 +61,13 @@ public class AesGcmExample {
         // decode to encrypted bytes.
         byte[] decoded = Base64.getDecoder().decode(encoded);
 
+        // 12 bytes for IV + 16 bytes for GCM authentication tag
+        int minimumLength = IV_LENGTH + (TAG_LENGTH_BITS/8);
+
+        if (decoded.length < minimumLength) {
+            throw  new IllegalArgumentException("Invalid encrypted data: input is too short");
+        }
+
         byte[] iv = new byte[IV_LENGTH];
         byte[] cipherText = new byte[decoded.length - IV_LENGTH];
 
